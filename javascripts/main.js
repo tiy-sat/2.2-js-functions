@@ -92,10 +92,95 @@ for (var i = 0; i < arrayOfJasonsBag.length; i++) {
 
 console.log(preambleString);
 
-
-
 // double equal signs will NOT assert TYPE "loose type"
 // triple equal signs WILL assert TYPE
 console.log(0 === "0");
 
-// COME BACK AT 10:55am
+var classroomObject = {
+  tables: 4,
+  chairs: 8,
+  students: ["Max", "Ernesto", "Lauren", "Gilbert", "Atom"],
+  clean: false,
+  windows: false
+}
+
+// To loop over an object
+for(var item in classroomObject) {
+  // classroomObject.tables
+  // classroomObject.item => literally looks for key of "item" it
+  //   does not reference the iterator with the for...in loop
+  console.log(classroomObject[item]);
+}
+
+
+var grades = {
+  a: {
+    max: 100,
+    min: 90
+  },
+  b: {
+    max: 89,
+    min: 80
+  },
+  c: {
+    max: 79,
+    min: 70
+  },
+  d: {
+    max: 69,
+    min: 60
+  },
+  f: {
+    max: 59,
+    min: 0
+  }
+}
+
+// If my grade is 95 it should be an a
+// Return You currently have <GradeLetter>
+function getGrade(gradeNumber){
+  // Arguments, or assertion (usually `==` || "or" `===`)
+  // For an "A" grade... we need the number to be
+  //   More than 90 (grades.a.min)
+  //   Less than 100 (grades.a.max)
+  // @TODO: COPIED AND PASTED SHOULD REFACTOR AS FUNCTION
+  if(gradeNumber >= grades.a.min && gradeNumber <= grades.a.max ){
+    // The number is higher than 90
+    return "You currently have: A";
+  }else if(gradeNumber >= grades.b.min && gradeNumber <= grades.b.max ){
+    return "You currently have: B";
+  }else if(gradeNumber >= grades.c.min && gradeNumber <= grades.c.max ){
+    return "You currently have: C";
+  }else if(gradeNumber >= grades.d.min && gradeNumber <= grades.d.max ){
+    return "You currently have: D";
+  }else if(gradeNumber >= grades.f.min && gradeNumber <= grades.f.max ){
+    return "You currently have: F";
+  }
+}
+
+var currentGradeLetter = getGrade(59);
+console.log(currentGradeLetter);
+
+
+/*
+  REFACTORED GRADE WITH FUNCTIONS
+*/
+
+
+// If my grade is 95 it should be an a
+// Return You currently have <GradeLetter>
+function getGradeRefactored(gradeNumber){
+  // Arguments, or assertion (usually `==` || "or" `===`)
+  // For an "A" grade... we need the number to be
+  //   More than 90 (grades.a.min)
+  //   Less than 100 (grades.a.max)
+  for (var gradeLetter in grades) {
+    if(gradeNumber >= grades[gradeLetter].min && gradeNumber <= grades[gradeLetter].max ){
+      // The number is higher than 90
+      return "You currently have: " + gradeLetter;
+    }
+  }
+}
+
+var newGrade = getGradeRefactored(100);
+console.log(newGrade);
