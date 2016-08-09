@@ -174,8 +174,10 @@ function getGradeRefactored(gradeNumber){
   // For an "A" grade... we need the number to be
   //   More than 90 (grades.a.min)
   //   Less than 100 (grades.a.max)
-  for (var gradeLetter in grades) {
-    if(gradeNumber >= grades[gradeLetter].min && gradeNumber <= grades[gradeLetter].max ){
+
+  // && is a way to "chain" if statements inside of one assertion
+  for(var gradeLetter in grades) {
+    if(gradeNumber >= grades[gradeLetter].min && gradeNumber <= grades[gradeLetter].max){
       // The number is higher than 90
       return "You currently have: " + gradeLetter;
     }
